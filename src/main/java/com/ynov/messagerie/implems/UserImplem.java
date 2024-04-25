@@ -6,6 +6,8 @@ import com.ynov.messagerie.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserImplem implements UserServices {
     @Autowired
@@ -14,5 +16,10 @@ public class UserImplem implements UserServices {
     @Override
     public User createUser(User user) {
         return userRepo.save(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
     }
 }

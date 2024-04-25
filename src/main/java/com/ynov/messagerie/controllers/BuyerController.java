@@ -1,29 +1,27 @@
 package com.ynov.messagerie.controllers;
 
-import com.ynov.messagerie.models.User;
-import com.ynov.messagerie.services.UserServices;
+import com.ynov.messagerie.models.Buyer;
+import com.ynov.messagerie.services.BuyerServices;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("buyer")
+public class BuyerController {
     @Autowired
-    UserServices userServices;
+    BuyerServices buyerServices;
 
     @PostMapping
-    @Operation(summary = "create user", description = "Creates a new user in the database")
-    public ResponseEntity<?> createUser(@Valid @RequestBody User user, BindingResult result){
+    @Operation(summary = "create buyer", description = "Creates a new buyer in the database")
+    public ResponseEntity<?> createSeller(@Valid @RequestBody Buyer buyer, BindingResult result){
         if(result.hasErrors()){
             List<String> errorMessages = new ArrayList<>();
             result.getAllErrors().forEach(
@@ -37,16 +35,16 @@ public class UserController {
             );
         }
         return new ResponseEntity<>(
-                userServices.createUser(user),
+                buyerServices.createBuyer(buyer),
                 HttpStatus.CREATED
         );
     }
 
     @GetMapping
-    @Operation(summary = "get all users", description = "Returns a list of all the user in the database")
-    public ResponseEntity<List<User>> getAllUsers(){
+    @Operation(summary = "get all buyers", description = "Returns a list of all the buyers in the database")
+    public ResponseEntity<List<Buyer>> getAllBuyers(){
         return new ResponseEntity<>(
-                userServices.getAllUsers(),
+                buyerServices.getAllBuyers(),
                 HttpStatus.OK
         );
     }
