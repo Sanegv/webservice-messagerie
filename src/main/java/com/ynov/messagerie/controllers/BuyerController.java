@@ -20,7 +20,7 @@ public class BuyerController {
     BuyerServices buyerServices;
 
     @PostMapping
-    @Operation(summary = "create buyer", description = "This route creates a buyer, which is a subtype of user")
+    @Operation(summary = "create buyer", description = "Creates a new buyer in the database")
     public ResponseEntity<?> createSeller(@Valid @RequestBody Buyer buyer, BindingResult result){
         if(result.hasErrors()){
             List<String> errorMessages = new ArrayList<>();
@@ -41,6 +41,7 @@ public class BuyerController {
     }
 
     @GetMapping
+    @Operation(summary = "get all buyers", description = "Returns a list of all the buyers in the database")
     public ResponseEntity<List<Buyer>> getAllBuyers(){
         return new ResponseEntity<>(
                 buyerServices.getAllBuyers(),

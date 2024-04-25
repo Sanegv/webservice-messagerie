@@ -22,7 +22,7 @@ public class UserController {
     UserServices userServices;
 
     @PostMapping
-    @Operation(summary = "create user", description = "This route creates users with the given body")
+    @Operation(summary = "create user", description = "Creates a new user in the database")
     public ResponseEntity<?> createUser(@Valid @RequestBody User user, BindingResult result){
         if(result.hasErrors()){
             List<String> errorMessages = new ArrayList<>();

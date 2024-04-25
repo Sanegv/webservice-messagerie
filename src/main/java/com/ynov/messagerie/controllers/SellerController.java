@@ -20,7 +20,7 @@ public class SellerController {
     SellerServices sellerServices;
 
     @PostMapping
-    @Operation(summary = "create seller", description = "This route creates a seller, which is a subtype of user")
+    @Operation(summary = "create seller", description = "Creates a new seller in the database")
     public ResponseEntity<?> createSeller(@Valid @RequestBody Seller seller, BindingResult result){
         if(result.hasErrors()){
             List<String> errorMessages = new ArrayList<>();
@@ -41,6 +41,7 @@ public class SellerController {
     }
 
     @GetMapping
+    @Operation(summary = "get all sellers", description = "Returns a list of all the sellers in the database")
     public ResponseEntity<List<Seller>> getAllSellers(){
         return new ResponseEntity<>(
                 sellerServices.getAllSellers(),
