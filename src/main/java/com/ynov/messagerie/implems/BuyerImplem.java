@@ -6,6 +6,8 @@ import com.ynov.messagerie.services.BuyerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BuyerImplem implements BuyerServices {
     @Autowired
@@ -14,5 +16,10 @@ public class BuyerImplem implements BuyerServices {
     @Override
     public Buyer createBuyer(Buyer buyer) {
         return buyerRepo.save(buyer);
+    }
+
+    @Override
+    public List<Buyer> getAllBuyers() {
+        return buyerRepo.findAll();
     }
 }
