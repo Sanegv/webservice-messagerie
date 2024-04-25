@@ -1,7 +1,7 @@
 package com.ynov.messagerie.controllers;
 
-import com.ynov.messagerie.models.Seller;
-import com.ynov.messagerie.services.SellerServices;
+import com.ynov.messagerie.models.Buyer;
+import com.ynov.messagerie.services.BuyerServices;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("seller")
-public class SellerController {
+@RequestMapping("buyer")
+public class BuyerController {
     @Autowired
-    SellerServices sellerServices;
+    BuyerServices buyerServices;
 
     @PostMapping
-    @Operation(summary = "create seller", description = "This route creates a seller, which is a subtype of user")
-    public ResponseEntity<?> createSeller(@Valid @RequestBody Seller seller, BindingResult result){
+    @Operation(summary = "create buyer", description = "This route creates a buyer, which is a subtype of user")
+    public ResponseEntity<?> createSeller(@Valid @RequestBody Buyer buyer, BindingResult result){
         if(result.hasErrors()){
             List<String> errorMessages = new ArrayList<>();
             result.getAllErrors().forEach(
@@ -38,7 +38,7 @@ public class SellerController {
             );
         }
         return new ResponseEntity<>(
-                sellerServices.createSeller(seller),
+                buyerServices.createBuyer(buyer),
                 HttpStatus.CREATED
         );
     }

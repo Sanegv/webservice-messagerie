@@ -9,10 +9,7 @@ import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -42,6 +39,15 @@ public class UserController {
         return new ResponseEntity<>(
                 userServices.createUser(user),
                 HttpStatus.CREATED
+        );
+    }
+
+    @GetMapping
+    @Operation(summary = "get all users", description = "Returns a list of all the user in the database")
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<>(
+                userServices.getAllUsers(),
+                HttpStatus.OK
         );
     }
 }
